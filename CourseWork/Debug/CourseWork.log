@@ -1,0 +1,6 @@
+﻿  exif.cpp
+  fileSystemTools.cpp
+  main.cpp
+c:\users\e\source\repos\coursework\coursework\imgpoint.h(44): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+  Создание кода...
+  CourseWork.vcxproj -> C:\Users\E\source\repos\CourseWork\Debug\CourseWork.exe
