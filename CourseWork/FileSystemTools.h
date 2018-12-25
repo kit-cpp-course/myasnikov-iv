@@ -4,7 +4,7 @@
 #include <vector>
 #include "windows.h"
 using namespace std;
-	// ласс, осушествл¤юший взаимодействие с файловой системой
+	// Класс, осушествл¤юший взаимодействие с файловой системой
 	class FileSystemTools {
 		static const wchar_t* prepare(wstring path);
 	public:
