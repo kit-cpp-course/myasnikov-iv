@@ -3,7 +3,7 @@
 #include <fstream>
 #include <codecvt>
 #include <locale>
-//Средство взаимодействия с пользователем
+//РЎСЂРµРґСЃС‚РІРѕ РІР·Р°РёРјРѕРґРµР№СЃС‚РІРёСЏ СЃ РїРѕР»СЊР·РѕРІР°С‚РµР»РµРј
 namespace UI{
 	static void endMessage(string path) {
 		std::cout << "Done! Check the folder " << path << std::endl;
