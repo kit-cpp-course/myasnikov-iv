@@ -3,12 +3,12 @@
 
 
 
-// ласс, представл¤юший географическую точку
+// Класс, представл¤юший географическую точку
 
 class GeoPoint {
-	//Ўирота
+	//Долгота
 	double longitude;
-	//ƒолгота
+	//Широта
 	double latitude;
 public:
 	double getLon() const;;
