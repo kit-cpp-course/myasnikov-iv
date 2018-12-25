@@ -1,19 +1,19 @@
 #pragma once
 #include "configs.h"
 
-//Класс для работы с аргументами командной строки
+//РљР»Р°СЃСЃ РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ Р°СЂРіСѓРјРµРЅС‚Р°РјРё РєРѕРјР°РЅРґРЅРѕР№ СЃС‚СЂРѕРєРё
 namespace cmd {
 	class arguments {
 		size_t count;
 		char ** argument;
 	protected:
-		//Является ли данная строка ключем
+		//РЇРІР»СЏРµС‚СЃСЏ Р»Рё РґР°РЅРЅР°СЏ СЃС‚СЂРѕРєР° РєР»СЋС‡РµРј
 		bool isKey(size_t index) const;
-		//Поиск аргумента по ключу
+		//РџРѕРёСЃРє Р°СЂРіСѓРјРµРЅС‚Р° РїРѕ РєР»СЋС‡Сѓ
 		std::string find(const std::string & name, std::string & def) const;
 	public:
 		arguments(size_t count, char ** arguments);
-		//Установка конфигируции на основе консольных аргументов
+		//РЈСЃС‚Р°РЅРѕРІРєР° РєРѕРЅС„РёРіРёСЂСѓС†РёРё РЅР° РѕСЃРЅРѕРІРµ РєРѕРЅСЃРѕР»СЊРЅС‹С… Р°СЂРіСѓРјРµРЅС‚РѕРІ
 		void apply(config & cfg) const;
 	};
 }
