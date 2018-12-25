@@ -1,7 +1,7 @@
 #include "FileSystemTools.h"
 #include <iostream>
 
-// ïîäãîòîâêà ïóòè äëÿ ðàáîòû ïðîãðàììû 
+// Ð¿Ð¾Ð´Ð³Ð¾Ñ‚Ð¾Ð²ÐºÐ° Ð¿ÑƒÑ‚Ð¸ Ð´Ð»Ñ Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹ Ð¿Ñ€Ð¾Ð³Ñ€Ð°Ð¼Ð¼Ñ‹ 
 const wchar_t* FileSystemTools::prepare(wstring path)
 {
 	wstring result = ( path);
@@ -11,7 +11,7 @@ const wchar_t* FileSystemTools::prepare(wstring path)
 	return resstr;
 }
 
-// ïðîâðåêà íà ñóùåñòâîâàíèå ôàéëà èëè ïàïêè 
+// Ð¿Ñ€Ð¾Ð²Ñ€ÐµÐºÐ° Ð½Ð° ÑÑƒÑ‰ÐµÑÑ‚Ð²Ð¾Ð²Ð°Ð½Ð¸Ðµ Ñ„Ð°Ð¹Ð»Ð° Ð¸Ð»Ð¸ Ð¿Ð°Ð¿ÐºÐ¸ 
 bool FileSystemTools::exists(wstring* const path)
 {
 	DWORD attrs = GetFileAttributesW(prepare(*path));
@@ -22,7 +22,7 @@ bool FileSystemTools::exists(wstring* const path)
 	return true;
 }
 
-// ïàïêà èëè ôàéë
+// Ð¿Ð°Ð¿ÐºÐ° Ð¸Ð»Ð¸ Ñ„Ð°Ð¹Ð»
 bool FileSystemTools::isFolder(wstring* const path)
 {
 	DWORD attrs = GetFileAttributesW(prepare(*path));
@@ -38,7 +38,7 @@ bool FileSystemTools::isFile(wstring* const path)
 	return !(attrs & FILE_ATTRIBUTE_DIRECTORY);
 }
 
-// ñîçäàíèå ïàïêè 
+// ÑÐ¾Ð·Ð´Ð°Ð½Ð¸Ðµ Ð¿Ð°Ð¿ÐºÐ¸ 
 bool FileSystemTools::createFolder(wstring* const path)
 {
 	const wchar_t* cpath = prepare(*path);
@@ -73,7 +73,7 @@ bool FileSystemTools::createFolder(wstring* const path)
 	return true;
 }
 
-// êîïèðîâàíèå ôàéëà â íîâóþ êàòåãîðèþ 
+// ÐºÐ¾Ð¿Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ Ñ„Ð°Ð¹Ð»Ð° Ð² Ð½Ð¾Ð²ÑƒÑŽ ÐºÐ°Ñ‚ÐµÐ³Ð¾Ñ€Ð¸ÑŽ 
 bool FileSystemTools::copyFile(wstring* const from, wstring* const to)
 {
 	if (!isFile(from)) return false;
@@ -82,18 +82,8 @@ bool FileSystemTools::copyFile(wstring* const from, wstring* const to)
 	size_t index = from->find_last_of('\\');
 	std::wstring fileName = from->substr(index + 1, from->length() - index - 1);
 	const wchar_t* cto = prepare(*to+fileName);
-
 	DWORD result = CopyFileW(cfrom, cto, true);
-	if (result == 0) {											
-		DWORD error = GetLastError();
-		if (error == ERROR_FILE_EXISTS) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-	return true;
+	return CopyFileW(cfrom, cto, true) != 0 || GetLastError() == ERROR_FILE_EXISTS;
 }
 vector<string> FileSystemTools::findAllJpgs(string path)
 {
@@ -112,9 +102,8 @@ vector<string> FileSystemTools::findAllJpgs(string path)
 	while (FindNextFile(h_fd, &FindFileData)) {
 		string name= FindFileData.cFileName;
 		size_t n = name.size();
-		if (n > 4) 
-			if (name.substr(name.size() - 4, 4) == ".jpg")
-				jpgs.push_back(path + name);
+		if (n > 4 && name.substr(name.size() - 4, 4) == ".jpg")
+			jpgs.push_back(path + name);
 		
 	}
 	return jpgs;

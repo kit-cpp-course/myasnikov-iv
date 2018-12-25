@@ -4,20 +4,21 @@
 #include <vector>
 #include "windows.h"
 using namespace std;
+	//В Р»Р°СЃСЃ, РѕСЃСѓС€РµСЃС‚РІР»В¤СЋС€РёР№ РІР·Р°РёРјРѕРґРµР№СЃС‚РІРёРµ СЃ С„Р°Р№Р»РѕРІРѕР№ СЃРёСЃС‚РµРјРѕР№
 	class FileSystemTools {
 		static const wchar_t* prepare(wstring path);
 	public:
-		// проврека на существование файла или папки 
+		// РїСЂРѕРІСЂРµРєР° РЅР° СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёРµ С„Р°Р№Р»Р° РёР»Рё РїР°РїРєРё 
 		static bool exists(wstring* const path);
-		// папка или файл
+		// РїР°РїРєР° РёР»Рё С„Р°Р№Р»
 		static bool isFolder(wstring* const path);
 		static bool isFile(wstring* const path);
-		// создание папки 
+		// СЃРѕР·РґР°РЅРёРµ РїР°РїРєРё 
 		static bool createFolder(wstring* const path);
-		// копирование файла в новую категорию 
+		// РєРѕРїРёСЂРѕРІР°РЅРёРµ С„Р°Р№Р»Р° РІ РЅРѕРІСѓСЋ РєР°С‚РµРіРѕСЂРёСЋ 
 		static bool copyFile(wstring* const from, wstring* const to);
-		// поиск всех файлов расширения jpeg в заданном каталоге
-		// возвращает вектор путей к найденным файлам
+		// РїРѕРёСЃРє РІСЃРµС… С„Р°Р№Р»РѕРІ СЂР°СЃС€РёСЂРµРЅРёВ¤ jpeg РІ Р·Р°РґР°РЅРЅРѕРј РєР°С‚Р°Р»РѕРіРµ
+		// РІРѕР·РІСЂР°С‰Р°РµС‚ РІРµРєС‚РѕСЂ РїСѓС‚РµР№ Рє РЅР°Р№РґРµРЅРЅС‹Рј С„Р°Р№Р»Р°Рј
 		static vector<string> findAllJpgs(string path);
 	};
 

@@ -1,11 +1,14 @@
 #pragma once
 #include <string>
+#include <codecvt>
+#include <locale>
+#include "FileSystemTools.h"
 
 
 namespace cmd {
 	class arguments;
 }
-
+//Singleton класс, представл¤ющий конфигураци¤ дл¤ работы программы
 class config {
 	friend class cmd::arguments;
 	static config m_instance;
@@ -13,21 +16,10 @@ class config {
 	std::string m_output = "output";
 	config() {}
 public:
-	const std::string & input() const {
-		return m_input;
-	}
-	const std::string & output() const {
-		return m_output;
-	}
-	static config & instance() {
-		return m_instance;
-	}
-	bool isValid() {
-		static std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
-		std::wstring winput = converter.from_bytes(m_input);
-		std::wstring woutput = converter.from_bytes(m_output);
-		return FileSystemTools::isFolder(&winput) && FileSystemTools::createFolder(&woutput);
-	}
+	const std::string & input() const;
+	const std::string & output() const;
+	static config & instance();
+	//явл¤етс¤ ли конфигураци¤ верной
+	bool isValid();
 };
 
-config config::m_instance = config();

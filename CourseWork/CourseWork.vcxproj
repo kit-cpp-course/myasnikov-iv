@@ -121,15 +121,23 @@
     <ClInclude Include="configs.h" />
     <ClInclude Include="exif.h" />
     <ClInclude Include="FileSystemTools.h" />
+    <ClInclude Include="ImgMap.h" />
     <ClInclude Include="ImgPoint.h" />
-    <ClInclude Include="Point.h" />
+    <ClInclude Include="GeoPoint.h" />
     <ClInclude Include="UI.h" />
     <ClInclude Include="Zone.h" />
+    <ClInclude Include="ZoneParser.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="arguments.cpp" />
+    <ClCompile Include="configs.cpp" />
     <ClCompile Include="exif.cpp" />
     <ClCompile Include="fileSystemTools.cpp" />
+    <ClCompile Include="GeoPoint.cpp" />
+    <ClCompile Include="ImgMap.cpp" />
+    <ClCompile Include="ImgPoint.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Zone.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

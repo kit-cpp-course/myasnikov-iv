@@ -1,26 +1,28 @@
 #pragma once
-#include <string>
-#include "Point.h"
 
-//Класс, представляюший зону
+#include <string>
+#include <vector>
+#include "ImgPoint.h"
+
+
+//Географическая зона
 //mins - точка, обозначаюшия нижнюю границу долготы и нижнюю границу долготы
 //maxs - точка, обозначаюшия верхнюю границу долготы и верхнюю границу долготы
+//pointsInside - jpg с геоданными соответствующие этой зоне
 class Zone {
 	char* name;
-	Point mins;
-	Point maxs;
+	GeoPoint mins;
+	GeoPoint maxs;
+	std::vector<ImgPoint*> pointsInside;
 public:
 	char *  getName() {
 		return name;
 	};
-	Zone(std::string name, Point mins, Point maxs) : mins(mins), maxs(maxs) {
-		//Есть ли способ элегантнее?
-		this->name = new char[name.length()];
-		const char * temp = name.c_str();
-		strcpy(this->name, temp);
-	}
-	//метод, которой определяет, попадает ли точкав это зону
-	bool belongsToThis(Point p) {
-		return p.getX() <= maxs.getX() && p.getX() >= mins.getX() && p.getY() <= maxs.getY() && p.getY() >= mins.getY();
-	}
+	Zone(std::string name, GeoPoint mins, GeoPoint maxs);
+	//Определяет попадает ли точка p с эту зону, если попадает, добавляет p в pointInside
+	bool addImgPoint(ImgPoint* p);
+	//Возвращает точку из pointsInside по индексу
+	ImgPoint * getImgPoint(size_t index);
+	//Размер pointsInside
+	size_t getImgPointsCount();
 };
